@@ -7,6 +7,12 @@
     <groupId>com.hanwencheng</groupId>
     <artifactId>app</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-gelly</artifactId>
+            <version>0.10.1</version>
+        </dependency>
+    </dependencies>
 
 </project>
