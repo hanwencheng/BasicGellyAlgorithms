@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class App {
 
-    private final static Logger logger = Logger.getLogger(App.class.getName());
+    private final static Logger Log = Logger.getLogger(App.class.getName());
 
     public static void main(String [ ] args)
     {
@@ -39,6 +39,7 @@ public class App {
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
         Graph<Long, Position, Object> graph = Graph.fromCollection(nodeList, edgeList, env);
 
+        Log.info("graph is" + graph);
     }
 
     private static boolean addNode(Long vertexId, int x, int y, ArrayList<Vertex<Long, Position>> vertices){
