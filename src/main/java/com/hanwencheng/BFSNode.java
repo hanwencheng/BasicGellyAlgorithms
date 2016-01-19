@@ -22,6 +22,18 @@ public class BFSNode {
         this.value = vertex.getValue();
     }
 
+    @Override
+    public String toString() {
+        String parentInfo = parent != null ? Long.toString(parent.getId()) : "null";
+        return "BFSNode{" +
+                "cost=" + cost +
+                ", color='" + color + '\'' +
+                ", parent=" + parentInfo +
+                ", id=" + id +
+                ", value=" + value +
+                '}';
+    }
+
     public long getId() {
         return this.id;
     }

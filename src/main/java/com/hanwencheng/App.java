@@ -40,11 +40,11 @@ public class App {
         BFS walker = BFS.getInstance(false);
 
         Log.info("========start test=========");
-        walker.printVerteces(graph, 1L);
+        Log.info("visited list is" + walker.printVerteces(graph, 1L));
 
         Log.info("========start bi-direction test=========");
         walker = BFS.getInstance(true);
-        walker.printVerteces(graph, 1L);
+        Log.info("visited list is" + walker.printVerteces(graph, 1L));
     }
 
     private static boolean addNode(Long vertexId, int x, int y, ArrayList<Vertex<Long, Position>> vertices){

@@ -25,6 +25,8 @@ public class BFS {
     //if it is bi-directory graph
     private boolean BD;
 
+    List<BFSNode> visited = null;
+
     protected BFS(boolean BD){
         Log = Logger.getLogger(BFS.class.getName());
         nodeList = new ArrayList<>();
@@ -43,24 +45,24 @@ public class BFS {
     private void setBD(boolean BD){
         this.BD = BD;
     }
-    public boolean printVerteces(Graph<Long, Position, Integer> graph, Long startNodeId) throws Exception {
+    public List<BFSNode> printVerteces(Graph<Long, Position, Integer> graph, Long startNodeId) throws Exception {
         nodes = graph.getVertices().collect();
         edges = graph.getEdges().collect();
-
+        visited = new ArrayList<>();
 
         nodes.stream().forEach(node -> nodeList.add(new BFSNode(node)));
         nodeList.stream().filter(node -> node.getId() == startNodeId).forEach(node -> startNode = node);
-        if(startNode == null){
-            return false;
+        if(startNode != null){
+            walk();
         }
-        walk();
-        return true;
+        return visited;
     }
 
     private void walk(){
         startNode.setCost(0);
         startNode.setColor(BFSNode.GREY);
         queue.add(startNode);
+        visited.add(startNode);
 
         while(!queue.isEmpty()){
             propagate(queue.get(0));
@@ -100,6 +102,7 @@ public class BFS {
             if(target.getColor().equals(BFSNode.BLACK)) return;
         }
         if(target.getColor().equals(BFSNode.WHITE)){
+            visited.add(target);
             target.setColor(BFSNode.GREY);
             Log.info("Arrive Target : set color from white to grey for node: " + target.getId());
         }
