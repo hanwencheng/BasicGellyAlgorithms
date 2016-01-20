@@ -2,6 +2,7 @@ package com.hanwencheng;
 
 /**
  * Created by hanwencheng on 1/16/16.
+ * A object for testing storing custom object into nodes
  */
 public class Position {
     public int x;

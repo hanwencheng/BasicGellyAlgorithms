@@ -1,3 +1,8 @@
+/**
+ * Created by hanwencheng on 1/16/16.
+ * The introduction application
+ */
+
 package com.hanwencheng;
 
 import gelly.algorithms.BFS;
@@ -9,9 +14,6 @@ import org.apache.flink.graph.Vertex;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-/**
- * Created by hanwencheng on 1/16/16.
- */
 public class App {
 
     private final static Logger Log = Logger.getLogger(App.class.getName());
@@ -40,11 +42,11 @@ public class App {
         BFS walker = BFS.getInstance(false);
 
         Log.info("========start test=========");
-        Log.info("visited list is" + walker.printVerteces(graph, 1L));
+        Log.info("visited list is" + walker.walk(graph, 1L));
 
         Log.info("========start bi-direction test=========");
         walker = BFS.getInstance(true);
-        Log.info("visited list is" + walker.printVerteces(graph, 1L));
+        Log.info("visited list is" + walker.walk(graph, 1L));
     }
 
     private static boolean addNode(Long vertexId, int x, int y, ArrayList<Vertex<Long, Position>> vertices){

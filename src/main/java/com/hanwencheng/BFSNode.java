@@ -1,5 +1,6 @@
 /**
  * Created by hanwencheng on 1/19/16.
+ * THe node object used in BFS search
  */
 
 package com.hanwencheng;

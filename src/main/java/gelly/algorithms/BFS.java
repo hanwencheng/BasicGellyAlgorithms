@@ -1,5 +1,6 @@
 /**
  * Created by hanwencheng on 1/18/16.
+ * The BFS algorithms we use
  */
 
 package gelly.algorithms;
@@ -24,7 +25,7 @@ public class BFS {
     ArrayList<BFSNode> queue;
     //if it is bi-directory graph
     private boolean BD;
-
+    //the list saved the visited node
     List<BFSNode> visited = null;
 
     protected BFS(boolean BD){
@@ -34,6 +35,11 @@ public class BFS {
         this.BD = BD;
     }
 
+    /**
+     * public singleton constructor
+     * @param BD whether we enable bi-direction BFS search
+     * @return The BFS instance
+     */
     public static gelly.algorithms.BFS getInstance(boolean BD) {
         if(instance == null){
             return new BFS(BD);
@@ -45,7 +51,15 @@ public class BFS {
     private void setBD(boolean BD){
         this.BD = BD;
     }
-    public List<BFSNode> printVerteces(Graph<Long, Position, Integer> graph, Long startNodeId) throws Exception {
+
+    /**
+     * function to start BFS walk
+     * @param graph the Gelly graph object we use
+     * @param startNodeId the id of start node
+     * @return a List of node according to visit order
+     * @throws Exception
+     */
+    public List<BFSNode> walk(Graph<Long, Position, Integer> graph, Long startNodeId) throws Exception {
         nodes = graph.getVertices().collect();
         edges = graph.getEdges().collect();
         visited = new ArrayList<>();
@@ -53,12 +67,17 @@ public class BFS {
         nodes.stream().forEach(node -> nodeList.add(new BFSNode(node)));
         nodeList.stream().filter(node -> node.getId() == startNodeId).forEach(node -> startNode = node);
         if(startNode != null){
-            walk();
+            initWalk();
         }
         return visited;
     }
 
-    private void walk(){
+    /* ================Followings are help function================ */
+
+    /**
+     * Set the start status of the BFS walk
+     */
+    private void initWalk(){
         startNode.setCost(0);
         startNode.setColor(BFSNode.GREY);
         queue.add(startNode);
@@ -70,6 +89,10 @@ public class BFS {
         }
     }
 
+    /**
+     * define the propagating action
+     * @param origin the start node
+     */
     private void propagate(BFSNode origin){
         Log.info("propagating: start at node: " +  origin.getId());
         // get the node with the same source
@@ -96,6 +119,12 @@ public class BFS {
         }
     }
 
+    /**
+     * define what to do when we arrive the new node based on the origin node
+     * @param target the arriving node
+     * @param origin the base node
+     * @param edge the edge by which we arrive the target
+     */
     private void judgeValue(BFSNode target, BFSNode origin, Edge<Long, Integer> edge){
         if(BD){
             // skip the black node

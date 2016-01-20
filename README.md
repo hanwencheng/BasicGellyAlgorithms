@@ -1,4 +1,6 @@
-# This is the Introduction Task from TU Berlin
+# Gelly Introduction Work Repository
+
+This is the Gelly Task from TU Berlin
 
 which is build by Hanwen from Uni Stuttgart
 
