@@ -19,7 +19,19 @@ public class App {
     private final static Logger Log = Logger.getLogger(App.class.getName());
 
     public static void main(String [ ] args) throws Exception {
+        Graph graph = buildGraph();
 
+        BFS walker = BFS.getInstance(false);
+
+        Log.info("========start test=========");
+        Log.info("visited list is" + walker.walk(graph, 1L));
+
+        Log.info("========start bi-direction test=========");
+        walker = BFS.getInstance(true);
+        Log.info("visited list is" + walker.walk(graph, 1L));
+    }
+
+    public static Graph buildGraph(){
         ArrayList<Vertex<Long, Position>> nodeList = new ArrayList<>();
         //cannot set Object as edge value here,
         ArrayList<Edge<Long, Integer>> edgeList = new ArrayList<>();
@@ -34,19 +46,10 @@ public class App {
         addEdge(4L, 1L, 5, edgeList);
         addEdge(2L, 4L, 3, edgeList);
         addEdge(5L, 4L, 4, edgeList);
-
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
         Graph<Long, Position, Integer> graph = Graph.fromCollection(nodeList, edgeList, env);
         Log.info("graph is" + nodeList + edgeList);
-
-        BFS walker = BFS.getInstance(false);
-
-        Log.info("========start test=========");
-        Log.info("visited list is" + walker.walk(graph, 1L));
-
-        Log.info("========start bi-direction test=========");
-        walker = BFS.getInstance(true);
-        Log.info("visited list is" + walker.walk(graph, 1L));
+        return graph;
     }
 
     private static boolean addNode(Long vertexId, int x, int y, ArrayList<Vertex<Long, Position>> vertices){
