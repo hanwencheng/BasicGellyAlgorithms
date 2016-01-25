@@ -18,7 +18,7 @@ public class ValueParameters {
      * @param name schema name
      * @param schema schema object to be stored
      */
-    public void createScheme(String name, Object schema){
+    public void create(String name, Object schema){
         this.schemasMap.put(name, schema);
     }
 
@@ -26,7 +26,7 @@ public class ValueParameters {
      * delete the schema
      * @param name schema name
      */
-    public void deleteSchema(String name){
+    public void delete(String name){
         this.schemasMap.remove(name);
     }
 
@@ -35,7 +35,7 @@ public class ValueParameters {
      * @param name the name of the schema
      * @param schema the schema object
      */
-    public boolean deleteSchema(String name, Object schema ){
+    public boolean delete(String name, Object schema ){
         return this.schemasMap.remove(name, schema);
     }
 
@@ -44,7 +44,7 @@ public class ValueParameters {
      * @param name schema name
      * @return the schema object
      */
-    public Object getSchema(String name){
+    public Object get(String name){
         return this.schemasMap.get(name);
     }
 }
