@@ -19,19 +19,19 @@ public class App {
     private final static Logger Log = Logger.getLogger(App.class.getName());
 
     public static void main(String [ ] args) throws Exception {
-        Graph graph = buildGraph();
+        Graph<Long, Position, Integer> graph = buildGraph();
 
         BFS walker = BFS.getInstance(false);
 
         Log.info("========start test=========");
-        Log.info("visited list is" + walker.walk(graph, 1L));
+//        Log.info("visited list is" + walker.walk(graph, 2L));
 
         Log.info("========start bi-direction test=========");
         walker = BFS.getInstance(true);
-        Log.info("visited list is" + walker.walk(graph, 1L));
+        Log.info("visited list is" + walker.walk(graph, 5L));
     }
 
-    public static Graph buildGraph(){
+    public static Graph<Long, Position, Integer> buildGraph(){
         ArrayList<Vertex<Long, Position>> nodeList = new ArrayList<>();
         //cannot set Object as edge value here,
         ArrayList<Edge<Long, Integer>> edgeList = new ArrayList<>();
