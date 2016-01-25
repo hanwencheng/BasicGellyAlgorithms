@@ -17,7 +17,7 @@ public class EdgeR<K, V> extends Edge<K, V> {
         super(src, trg, val);
         this.valueParameters = new ValueParameters();
     }
-    
+
     public void addParameter(String name, Object parameter){
         this.valueParameters.create(name, parameter);
     }
