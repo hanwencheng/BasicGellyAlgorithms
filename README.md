@@ -1,6 +1,6 @@
 # Gelly Introduction Work Repository
 
-This is the Gelly Task from TU Berlin, which include the following contents:
+This is the Thesis preparation work with Gelly from TU Berlin, which include the following contents:
 
 1. Create the project in Maven with `flink-gelly` dependency
 
